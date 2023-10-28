@@ -1,3 +1,5 @@
+import Auth from './auth.js';
+
 var _this = void 0;
 
 var indexSong = 0;
@@ -43,11 +45,19 @@ function App(_ref) {
     selectedSong.currentTime = 0;
     progressBarIsUpdating = false;
     selectedSong = playlistSongs_elmnt[indexSong];
-    selectedSong.paused && songIsPlayed ? selectedSong.play() : selectedSong.pause();
     setBodyBg(songs[indexSong].bg);
     setProperty(sliderImgs_elmnt, "--index", -indexSong);
     updateInfo(singerName_elmnt, songs[indexSong].artist);
     updateInfo(songName_elmnt, songs[indexSong].songName);
+
+    // begin mods
+    broadcastGuarantor_elmnt.classList.remove("click");
+    Auth.isAuthorized(songs, indexSong, (error) => {
+      if (error) return console.error(error);
+      broadcastGuarantor_elmnt.classList.add("click");
+      selectedSong.play();
+    });
+    // end mods
   }
 
   setBodyBg(songs[0].bg);
@@ -353,10 +363,22 @@ function Slider(_ref) {
     if (selectedSong.currentTime === selectedSong.duration) {
       handleChangeMusic({});
     }
+    // begin mods
+    let continuePlay = (error) => {
+      if (error) return console.error(error);
+      this.classList.toggle("click");
+      songIsPlayed = !songIsPlayed;
+      selectedSong.paused ? selectedSong.play() : selectedSong.pause();
+    }
 
-    this.classList.toggle("click");
-    songIsPlayed = !songIsPlayed;
-    selectedSong.paused ? selectedSong.play() : selectedSong.pause();
+    if (selectedSong.paused) {
+      Auth.isAuthorized(slides, indexSong, continuePlay);
+    } else {
+      continuePlay(null);
+    }
+    // end mods
+
+
   }
 
   return dom("div", {
