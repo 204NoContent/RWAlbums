@@ -143,6 +143,186 @@
         "song": "./assets/media/daft_punk/16 Funk Ad.mp3",
         "cover": "./assets/media/daft_punk/daft_punk.jpg"
       }
+    },
+    {
+      "bg": "#f44336",
+      "artist": "Radiohead",
+      "songName": "15 Step",
+      "files": {
+        "song": "./assets/media/radiohead/01 15 Step.mp3",
+        "cover": "./assets/media/radiohead/radiohead.jpg"
+      }
+    },
+    {
+      "bg": "#e81e63",
+      "artist": "Radiohead",
+      "songName": "Bodysnatchers",
+      "files": {
+        "song": "./assets/media/radiohead/02 Bodysnatchers.mp3",
+        "cover": "./assets/media/radiohead/radiohead.jpg"
+      }
+    },
+    {
+      "bg": "#9c27b0",
+      "artist": "Radiohead",
+      "songName": "Nude",
+      "files": {
+        "song": "./assets/media/radiohead/03 Nude.mp3",
+        "cover": "./assets/media/radiohead/radiohead.jpg"
+      }
+    },
+    {
+      "bg": "#673ab7",
+      "artist": "Radiohead",
+      "songName": "Weird Fishes-Arpeggi",
+      "files": {
+        "song": "./assets/media/radiohead/04 Weird Fishes-Arpeggi.mp3",
+        "cover": "./assets/media/radiohead/radiohead.jpg"
+      }
+    },
+    {
+      "bg": "#3f51b5",
+      "artist": "Radiohead",
+      "songName": "All I Need",
+      "files": {
+        "song": "./assets/media/radiohead/05 All I Need.mp3",
+        "cover": "./assets/media/radiohead/radiohead.jpg"
+      }
+    },
+    {
+      "bg": "#2196f3",
+      "artist": "Radiohead",
+      "songName": "Faust Arp",
+      "files": {
+        "song": "./assets/media/radiohead/06 Faust Arp.mp3",
+        "cover": "./assets/media/radiohead/radiohead.jpg"
+      }
+    },
+    {
+      "bg": "#03a9f4",
+      "artist": "Radiohead",
+      "songName": "Reckoner",
+      "files": {
+        "song": "./assets/media/radiohead/07 Reckoner.mp3",
+        "cover": "./assets/media/radiohead/radiohead.jpg"
+      }
+    },
+    {
+      "bg": "#00bcd4",
+      "artist": "Radiohead",
+      "songName": "House Of Cards",
+      "files": {
+        "song": "./assets/media/radiohead/08 House Of Cards.mp3",
+        "cover": "./assets/media/radiohead/radiohead.jpg"
+      }
+    },
+    {
+      "bg": "#009688",
+      "artist": "Radiohead",
+      "songName": "Jigsaw Falling Into Place",
+      "files": {
+        "song": "./assets/media/radiohead/09 Jigsaw Falling Into Place.mp3",
+        "cover": "./assets/media/radiohead/radiohead.jpg"
+      }
+    },
+    {
+      "bg": "#4caf50",
+      "artist": "Radiohead",
+      "songName": "Videotape",
+      "files": {
+        "song": "./assets/media/radiohead/10 Videotape.mp3",
+        "cover": "./assets/media/radiohead/radiohead.jpg"
+      }
+    },
+    {
+      "bg": "#f44336",
+      "artist": "Out Hud",
+      "songName": "This Just In [Intro]",
+      "files": {
+        "song": "./assets/media/out_hud/01 This Just In [Intro].mp3",
+        "cover": "./assets/media/out_hud/out_hud.jpg"
+      }
+    },
+    {
+      "bg": "#e81e63",
+      "artist": "Out Hud",
+      "songName": "It's For You",
+      "files": {
+        "song": "./assets/media/out_hud/02 It's For You.mp3",
+        "cover": "./assets/media/out_hud/out_hud.jpg"
+      }
+    },
+    {
+      "bg": "#9c27b0",
+      "artist": "Out Hud",
+      "songName": "One Life To Leave",
+      "files": {
+        "song": "./assets/media/out_hud/03 One Life To Leave.mp3",
+        "cover": "./assets/media/out_hud/out_hud.jpg"
+      }
+    },
+    {
+      "bg": "#673ab7",
+      "artist": "Out Hud",
+      "songName": "Old Nude",
+      "files": {
+        "song": "./assets/media/out_hud/04 Old Nude.mp3",
+        "cover": "./assets/media/out_hud/out_hud.jpg"
+      }
+    },
+    {
+      "bg": "#3f51b5",
+      "artist": "Out Hud",
+      "songName": "The Song So Good They Named It Thrice",
+      "files": {
+        "song": "./assets/media/out_hud/05 The Song So Good They Named It Thrice.mp3",
+        "cover": "./assets/media/out_hud/out_hud.jpg"
+      }
+    },
+    {
+      "bg": "#2196f3",
+      "artist": "Out Hud",
+      "songName": "How Long",
+      "files": {
+        "song": "./assets/media/out_hud/06 How Long.mp3",
+        "cover": "./assets/media/out_hud/out_hud.jpg"
+      }
+    },
+    {
+      "bg": "#03a9f4",
+      "artist": "Out Hud",
+      "songName": "2005- A Face Odyssey",
+      "files": {
+        "song": "./assets/media/out_hud/07 2005- A Face Odyssey.mp3",
+        "cover": "./assets/media/out_hud/out_hud.jpg"
+      }
+    },
+    {
+      "bg": "#00bcd4",
+      "artist": "Out Hud",
+      "songName": "The Zillionth Watt",
+      "files": {
+        "song": "./assets/media/out_hud/08 The Zillionth Watt.mp3",
+        "cover": "./assets/media/out_hud/out_hud.jpg"
+      }
+    },
+    {
+      "bg": "#009688",
+      "artist": "Out Hud",
+      "songName": "Dear Mr. Bush, There Are Over 100 Words For Shit And Only 1 For Music. Fuck You, Out Hud",
+      "files": {
+        "song": "./assets/media/out_hud/09 Dear Mr. Bush, There Are Over 100 Words For Shit And Only 1 For Music. Fuck You, Out Hud.mp3",
+        "cover": "./assets/media/out_hud/out_hud.jpg"
+      }
+    },
+    {
+      "bg": "#4caf50",
+      "artist": "Out Hud",
+      "songName": "The Stoked American",
+      "files": {
+        "song": "./assets/media/out_hud/10 The Stoked American.mp3",
+        "cover": "./assets/media/out_hud/out_hud.jpg"
+      }
     }
   ]
 }

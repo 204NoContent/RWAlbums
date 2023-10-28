@@ -24,7 +24,7 @@ html {
   scrollbar-width: none;
   box-sizing: border-box;
 
-  --duration: 1s;
+  --duration: 0.5s;
   --ease-slider: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-timeline: cubic-bezier(0.71, 0.21, 0.3, 0.95);
 }
@@ -140,7 +140,7 @@ body {
   --cover-size: 3.8125em;
   --border-radius: 1.625em;
 
-  --music-player-height: 24.375em;
+  --music-player-height: 43em;
 
   width: 20.9375em;
   overflow: hidden;
@@ -165,7 +165,7 @@ body {
 .slider.resize {
   --shadow-opacity: 0;
 
-  height: var(--music-player-height);
+  height: 24.5em;
 }
 
 .slider::after {
