@@ -126,7 +126,7 @@ contract RWAlbumsNFT is ERC721("RWAlbums", "RWAS") {
     }
 
     function listForSale(uint tokenId, uint price) external whenOwned(tokenId) {
-        _salePrice[tokenId] = price;
+        _salePrice[tokenId] = price * 1 gwei;
         emit ForSale(msg.sender, tokenId);
     }
 
