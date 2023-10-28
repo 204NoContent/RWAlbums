@@ -52,8 +52,8 @@ function App(_ref) {
 
     // begin mods
     broadcastGuarantor_elmnt.classList.remove("click");
-    Auth.isAuthorized(songs, indexSong, (error) => {
-      if (error) return console.error(error);
+    Auth.isAuthorized(songs, indexSong, (err) => {
+      if (err) return console.error(err);
       broadcastGuarantor_elmnt.classList.add("click");
       selectedSong.play();
     });
@@ -364,8 +364,8 @@ function Slider(_ref) {
       handleChangeMusic({});
     }
     // begin mods
-    let continuePlay = (error) => {
-      if (error) return console.error(error);
+    let continuePlay = (err) => {
+      if (err) return console.error(err);
       this.classList.toggle("click");
       songIsPlayed = !songIsPlayed;
       selectedSong.paused ? selectedSong.play() : selectedSong.pause();

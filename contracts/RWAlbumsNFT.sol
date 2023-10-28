@@ -24,6 +24,7 @@ contract RWAlbumsNFT is ERC721("RWAlbums", "RWAS") {
     }
 
     struct PlayLock {
+        address owner;
         address distributor;
         uint lockedUntil;
         uint playCost;
@@ -142,6 +143,7 @@ contract RWAlbumsNFT is ERC721("RWAlbums", "RWAS") {
         if (msg.value > playCost) _balance[msg.sender] += msg.value - playCost;
         uint lockedUntil = block.timestamp + _metadata[tokenId].duration;
         _playLock[tokenId] = PlayLock({
+            owner: msg.sender,
             distributor: distributor,
             lockedUntil: lockedUntil,
             playCost: playCost,
