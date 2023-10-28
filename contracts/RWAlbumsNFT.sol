@@ -33,17 +33,24 @@ contract RWAlbumsNFT is ERC721("RWAlbums", "RWAS") {
     mapping(uint => Metadata) private _metadata;
     mapping(uint => PlayLock) private _playLock;
     mapping(address => uint) private _balance;
+    mapping(uint => uint) private _salePrice;
 
     event Mint(address indexed owner, uint indexed tokenId, Metadata metadata);
     event Play(address indexed owner, uint indexed tokenId, address indexed distributor, uint lockedUntil, uint playCost, string nonce);
+    event ForSale(address indexed owner, uint indexed tokenId);
 
     modifier whenAdmin() {
         require(_isAdmin[msg.sender], "Unauthorized");
         _;
     }
 
-    modifier whenOwner(uint tokenId) {
+    modifier whenOwned(uint tokenId) {
         require(ownerOf(tokenId) == msg.sender, "Not token owner");
+        _;
+    }
+
+    modifier whenNotOwned(uint tokenId) {
+        require(ownerOf(tokenId) != msg.sender, "Already owned");
         _;
     }
 
@@ -52,8 +59,17 @@ contract RWAlbumsNFT is ERC721("RWAlbums", "RWAS") {
         _;
     }
 
+    modifier whenForSale(uint tokenId) {
+        require(_isForSale(tokenId), "Not for sale");
+        _;
+    }
+
     function _isPlayLocked(uint tokenId) internal view returns (bool) {
         return block.timestamp < _playLock[tokenId].lockedUntil;
+    }
+
+    function _isForSale(uint tokenId) internal view returns (bool) {
+        return _salePrice[tokenId] > 0;
     }
 
     function addAdmin(address newAdmin) external whenAdmin {
@@ -97,11 +113,28 @@ contract RWAlbumsNFT is ERC721("RWAlbums", "RWAS") {
         return _isPlayLocked(tokenId);
     }
 
+    function getSalePrice(uint tokenId) external view returns (uint) {
+        return _salePrice[tokenId];
+    }
+
+    function isForSale(uint tokenId) external view returns (bool) {
+        return _isForSale(tokenId);
+    }
+
     function setAdminCut(uint adminCut) external whenAdmin {
         _adminCut = adminCut * 1 gwei;
     }
 
-    function play(uint tokenId, uint playCost, address distributor, string calldata nonce) external payable whenOwner(tokenId) whenNotPlayLocked(tokenId) {
+    function listForSale(uint tokenId, uint price) external whenOwned(tokenId) {
+        _salePrice[tokenId] = price;
+        emit ForSale(msg.sender, tokenId);
+    }
+
+    function removeFromSale(uint tokenId) external whenOwned(tokenId) {
+        delete _salePrice[tokenId];
+    }
+
+    function play(uint tokenId, uint playCost, address distributor, string calldata nonce) external payable whenOwned(tokenId) whenNotPlayLocked(tokenId) {
         require(playCost >= _adminCut, "PlayCost is too low");
         require(msg.value >= playCost, "Insufficient payment");
         _adminBalance += _adminCut;
@@ -115,6 +148,16 @@ contract RWAlbumsNFT is ERC721("RWAlbums", "RWAS") {
             nonce: nonce
         });
         emit Play(msg.sender, tokenId, distributor, lockedUntil, playCost, nonce);
+    }
+
+    function purchase(uint tokenId) external payable whenForSale(tokenId) whenNotOwned(tokenId) {
+        uint salePrice = _salePrice[tokenId];
+        require(msg.value >= salePrice, "Insufficient payment");
+        address owner = ownerOf(tokenId);
+        _balance[owner] += msg.value;
+        if (msg.value > salePrice) _balance[msg.sender] += msg.value - salePrice;
+        delete _salePrice[tokenId];
+        _safeTransfer(owner, msg.sender, tokenId);
     }
 
     function mint(address to, Metadata calldata metadata) external returns (uint tokenId) {
