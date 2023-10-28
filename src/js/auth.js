@@ -1,7 +1,7 @@
 const { Web3 } = require('web3');
 const abi = require('./abi.js');
 const contractAddress = '';
-const distributorAddress = '';
+const distributorAddress = '0x61bF78dE3948Cabe342343919c895319871d004e';
 const playCost = 4000000000000; // 4000 gwei
 const gas = 300000;
 
@@ -49,6 +49,33 @@ const isValidPlayLock = playLock => {
   );
 };
 
+const play = (tokenId, callback) => {
+  const encodedPlay = contract.methods.play(tokenId, playCost, distributorAddress).encodeABI();
+  web3.eth.sendTransaction({
+    from: account,
+    to: contractAddress,
+    gas: gas,
+    value: playCost,
+    data: encodedPlay
+  }).then(receipt => {
+    console.log('$$$ Play album:', tokenId);
+    callback(null);
+  }).catch(callback);
+};
+
+const pollPlayLock = (tokenId, callback, attemptsRemaining = 30) => {
+  if (attemptsRemaining < 1) return callback(new Error('Timeout'));
+  console.log('Polling playlock. Attempts remaining:', attemptsRemaining);
+  getPlayLock(tokenId, (err, playLock) => {
+    if (err) return callback(err);
+    if (isValidPlayLock(playLock)) {
+      authorizedTokenIds[tokenId] = Number(playLock.lockedUntil);
+      return callback(null);
+    }
+    window.setTimeout(pollPlayLock, 1000, tokenId, callback, attemptsRemaining - 1);
+  });
+}
+
 module.exports.isAuthorized = (songs, indexSong, callback) => {
   let tokenId = songs[indexSong].tokenId;
   if (isAuthorizedTokenId(tokenId)) return callback(null);
@@ -62,7 +89,10 @@ module.exports.isAuthorized = (songs, indexSong, callback) => {
           authorizedTokenIds[tokenId] = Number(playLock.lockedUntil);
           return callback(null);
         }
-        // call the play method
+        play(tokenId, err => {
+          if (err) return callback(err);
+          pollPlayLock(tokenId, callback);
+        });
       });
     } else {
       // check if the album is available for purchase
