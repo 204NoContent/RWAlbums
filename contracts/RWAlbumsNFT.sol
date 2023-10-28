@@ -16,6 +16,17 @@ contract RWAlbumsNFT is ERC721("RWAlbums", "RWAS") {
         _adminCut = 2000 gwei;
     }
 
+    struct Metadata {
+        string artist;
+        string album;
+        uint duration;
+        string[] songs;
+    }
+
+    mapping(uint => Metadata) private _metadata;
+
+    event Mint(address indexed owner, uint indexed tokenId, Metadata metadata);
+
     modifier whenAdmin() {
         require(_isAdmin[msg.sender], "Unauthorized");
         _;
@@ -48,5 +59,17 @@ contract RWAlbumsNFT is ERC721("RWAlbums", "RWAS") {
 
     function getAdminBalance() external view whenAdmin returns (uint) {
         return _adminBalance;
+    }
+
+    function getMetadata(uint tokenId) external view returns (Metadata memory) {
+        return _metadata[tokenId];
+    }
+
+    function mint(address to, Metadata calldata metadata) external returns (uint tokenId) {
+        tokenId = _tokenCounter + 1;
+        _tokenCounter = tokenId;
+        _metadata[tokenId] = metadata;
+        _safeMint(to, tokenId);
+        emit Mint(to, tokenId, metadata);
     }
 }
