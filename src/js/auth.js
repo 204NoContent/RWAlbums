@@ -1,9 +1,10 @@
 const { Web3 } = require('web3');
 const abi = require('./abi.js');
-const contractAddress = '';
+const contractAddress = '0xAeC35921EDc95dEA5D881C6051BaF1EAA24640AA';
 const distributorAddress = '0x61bF78dE3948Cabe342343919c895319871d004e';
 const playCost = 4000000000000; // 4000 gwei
 const gas = 300000;
+const gasPrice = 50000000;
 
 let web3;
 let account;
@@ -45,7 +46,7 @@ const isValidPlayLock = playLock => {
     playLock.owner.toLowerCase() === account.toLowerCase()
     && playLock.distributor.toLowerCase() === distributorAddress.toLowerCase()
     && playLock.lockedUntil > Date.now() / 1000
-    && playLock.playCost === playCost
+    && Number(playLock.playCost) === playCost
   );
 };
 
@@ -55,6 +56,7 @@ const play = (tokenId, callback) => {
     from: account,
     to: contractAddress,
     gas: gas,
+    gasPrice: gasPrice,
     value: playCost,
     data: encodedPlay
   }).then(receipt => {

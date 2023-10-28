@@ -1,0 +1,8 @@
+// Mint
+"0x81e1fC4bE2b43F9f21870fA8C548Ed9222F93115", ["Boards of Canada", "Music Has the Right to Children", 3782, ["Wildlife Analysis", "Eagle In Your Mind", "The Color Of The Fire", "Telephasic Workshop", "Triangles And Rhombuses", "Sixtyten", "Turquoise Hexagon Sun", "Kaini Industries", "Bocuma", "Roygbiv", "Rue The Whirl", "Aquarius", "Olson", "Pete Standing Alone", "Smokes Quantity", "Open The Light", "One Very Important Thought", "Happy Cycling"]]
+"0x81e1fC4bE2b43F9f21870fA8C548Ed9222F93115", ["Radiohead", "In Rainbows", 2559, ["15 Step", "Bodysnatchers", "Nude", "Weird Fishes-Arpeggi", "All I Need", "Faust Arp", "Reckoner", "House Of Cards", "Jigsaw Falling Into Place", "Videotape"]]
+"0x014Ada4F65Db1A74bf9c1A3645faA98Ae65D0B27", ["Out Hud", "Let Us Never Speak of It Again", 3071, ["This Just In [Intro]", "It's For You", "One Life To Leave", "Old Nude", "The Song So Good They Named It Thrice", "How Long", "2005- A Face Odyssey", "The Zillionth Watt", "Dear Mr. Bush, There Are Over 100 Words For Shit And Only 1 For Music. Fuck You, Out Hud", "The Stoked American"]]
+"0x81e1fC4bE2b43F9f21870fA8C548Ed9222F93115", ["Daft Punk", "Homework", 4433, ["Daftendirekt", "WDPK 83.7 FM", "Revolution 909", "Da Funk", "Phoenix", "Fresh", "Around The World", "Rollin' & Scratchin'", "Teachers", "High Fidelity", "Rock'n Roll", "Oh Yeah", "Burnin'", "Indo Silver Club", "Alive", "Funk Ad"]]
+
+// Play
+4, 4000000000000, "0x61bF78dE3948Cabe342343919c895319871d004e"
