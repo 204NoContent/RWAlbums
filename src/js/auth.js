@@ -60,7 +60,7 @@ const play = (tokenId, callback) => {
     value: playCost,
     data: encodedPlay
   }).then(receipt => {
-    console.log('$$$ Play album:', tokenId);
+    console.log('!!! Play album:', tokenId);
     callback(null);
   }).catch(callback);
 };
@@ -76,7 +76,44 @@ const pollPlayLock = (tokenId, callback, attemptsRemaining = 30) => {
     }
     window.setTimeout(pollPlayLock, 1000, tokenId, callback, attemptsRemaining - 1);
   });
-}
+};
+
+const getSalePrice = (tokenId, callback) => {
+  contract.methods.getSalePrice(tokenId).call({ from: account }).then(receipt => {
+    callback(null, Number(receipt));
+  }).catch(callback);
+};
+
+const getMetadata = (tokenId, callback) => {
+  contract.methods.getMetadata(tokenId).call({ from: account }).then(receipt => {
+    callback(null, receipt);
+  }).catch(callback);
+};
+
+const presentPurchaseModal = (salePrice, metadata, callback) => {
+  const message = `\nYou do not own ${metadata.artist} - ${metadata.album}.\n\nWould you like to purchase it for ${salePrice / 1e9} gwei ($1.99)?\n`;
+  callback(null, confirm(message));
+};
+
+const purchase = (tokenId, value, callback) => {
+  const encodedPurchase = contract.methods.purchase(tokenId).encodeABI();
+  web3.eth.sendTransaction({
+    from: account,
+    to: contractAddress,
+    gas: gas,
+    gasPrice: gasPrice,
+    value: value,
+    data: encodedPurchase
+  }).then(receipt => {
+    console.log('$$$ Purchased album:', tokenId);
+    callback(null);
+  }).catch(callback);
+};
+
+const presentSuccessModal = (salePrice, metadata) => {
+  const message = `\nYou successfully purchased ${metadata.artist} - ${metadata.album}.\n\nYou can now play the album!\n`;
+  alert(message);
+};
 
 module.exports.isAuthorized = (songs, indexSong, callback) => {
   let tokenId = songs[indexSong].tokenId;
@@ -97,7 +134,21 @@ module.exports.isAuthorized = (songs, indexSong, callback) => {
         });
       });
     } else {
-      // check if the album is available for purchase
+      getSalePrice(tokenId, (err, salePrice) => {
+        if (err) return callback(err);
+        if (salePrice === 0) return callback(new Error('Not for sale'));
+        getMetadata(tokenId, (err, metadata) => {
+          if (err) return callback(err);
+          presentPurchaseModal(salePrice, metadata, (err, shouldPurchase) => {
+            if (err) return callback(err);
+            if (!shouldPurchase) return callback(new Error('Purchase declined'));
+            purchase(tokenId, salePrice, err => {
+              if (err) return callback(err);
+              presentSuccessModal(salePrice, metadata);
+            });
+          });
+        });
+      });
     }
   });
 }

@@ -445,4 +445,3 @@ function Slider(_ref) {
     "class": "progress__bar center"
   })))));
 }
-
