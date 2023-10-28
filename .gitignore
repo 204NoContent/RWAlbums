@@ -128,3 +128,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# osx
+.DS_Store
+
+# media files
+src/assets/media

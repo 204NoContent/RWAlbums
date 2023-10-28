@@ -1,0 +1,148 @@
+{
+  "songs": [
+    {
+      "bg": "#f44336",
+      "artist": "Daft Punk",
+      "songName": "Daftendirekt",
+      "files": {
+        "song": "./assets/media/daft_punk/01 Daftendirekt.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#e81e63",
+      "artist": "Daft Punk",
+      "songName": "WDPK 83.7 FM",
+      "files": {
+        "song": "./assets/media/daft_punk/02 WDPK 83.7 FM.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#9c27b0",
+      "artist": "Daft Punk",
+      "songName": "Revolution 909",
+      "files": {
+        "song": "./assets/media/daft_punk/03 Revolution 909.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#673ab7",
+      "artist": "Daft Punk",
+      "songName": "Da Funk",
+      "files": {
+        "song": "./assets/media/daft_punk/04 Da Funk.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#3f51b5",
+      "artist": "Daft Punk",
+      "songName": "Phoenix",
+      "files": {
+        "song": "./assets/media/daft_punk/05 Phoenix.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#2196f3",
+      "artist": "Daft Punk",
+      "songName": "Fresh",
+      "files": {
+        "song": "./assets/media/daft_punk/06 Fresh.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#03a9f4",
+      "artist": "Daft Punk",
+      "songName": "Around The World",
+      "files": {
+        "song": "./assets/media/daft_punk/07 Around The World.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#00bcd4",
+      "artist": "Daft Punk",
+      "songName": "Rollin' & Scratchin'",
+      "files": {
+        "song": "./assets/media/daft_punk/08 Rollin' & Scratchin'.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#009688",
+      "artist": "Daft Punk",
+      "songName": "Teachers",
+      "files": {
+        "song": "./assets/media/daft_punk/09 Teachers.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#4caf50",
+      "artist": "Daft Punk",
+      "songName": "High Fidelity",
+      "files": {
+        "song": "./assets/media/daft_punk/10 High Fidelity.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#8bc34a",
+      "artist": "Daft Punk",
+      "songName": "Rock'n Roll",
+      "files": {
+        "song": "./assets/media/daft_punk/11 Rock'n Roll.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#cddc39",
+      "artist": "Daft Punk",
+      "songName": "Oh Yeah",
+      "files": {
+        "song": "./assets/media/daft_punk/12 Oh Yeah.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#ffeb3b",
+      "artist": "Daft Punk",
+      "songName": "Burnin'",
+      "files": {
+        "song": "./assets/media/daft_punk/13 Burnin'.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#ffc107",
+      "artist": "Daft Punk",
+      "songName": "Indo Silver Club",
+      "files": {
+        "song": "./assets/media/daft_punk/14 Indo Silver Club.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#ff9800",
+      "artist": "Daft Punk",
+      "songName": "Alive",
+      "files": {
+        "song": "./assets/media/daft_punk/15 Alive.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    },
+    {
+      "bg": "#ff5722",
+      "artist": "Daft Punk",
+      "songName": "Funk Ad",
+      "files": {
+        "song": "./assets/media/daft_punk/16 Funk Ad.mp3",
+        "cover": "./assets/media/daft_punk/daft_punk.jpg"
+      }
+    }
+  ]
+}
