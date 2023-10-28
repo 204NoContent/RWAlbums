@@ -23,13 +23,37 @@ contract RWAlbumsNFT is ERC721("RWAlbums", "RWAS") {
         string[] songs;
     }
 
+    struct PlayLock {
+        address distributor;
+        uint lockedUntil;
+        uint playCost;
+        string nonce;
+    }
+
     mapping(uint => Metadata) private _metadata;
+    mapping(uint => PlayLock) private _playLock;
+    mapping(address => uint) private _balance;
 
     event Mint(address indexed owner, uint indexed tokenId, Metadata metadata);
+    event Play(address indexed owner, uint indexed tokenId, address indexed distributor, uint lockedUntil, uint playCost, string nonce);
 
     modifier whenAdmin() {
         require(_isAdmin[msg.sender], "Unauthorized");
         _;
+    }
+
+    modifier whenOwner(uint tokenId) {
+        require(ownerOf(tokenId) == msg.sender, "Not token owner");
+        _;
+    }
+
+    modifier whenNotPlayLocked(uint tokenId) {
+        require(!_isPlayLocked(tokenId), "The token is locked");
+        _;
+    }
+
+    function _isPlayLocked(uint tokenId) internal view returns (bool) {
+        return block.timestamp < _playLock[tokenId].lockedUntil;
     }
 
     function addAdmin(address newAdmin) external whenAdmin {
@@ -53,16 +77,44 @@ contract RWAlbumsNFT is ERC721("RWAlbums", "RWAS") {
         return _adminCut;
     }
 
-    function setAdminCut(uint adminCut) external whenAdmin {
-        _adminCut = adminCut * 1 gwei;
-    }
-
     function getAdminBalance() external view whenAdmin returns (uint) {
         return _adminBalance;
     }
 
+    function getBalance() external view returns (uint) {
+        return _balance[msg.sender];
+    }
+
     function getMetadata(uint tokenId) external view returns (Metadata memory) {
         return _metadata[tokenId];
+    }
+
+    function getPlayLock(uint tokenId) external view returns (PlayLock memory) {
+        return _playLock[tokenId];
+    }
+
+    function isPlayLocked(uint tokenId) external view returns (bool) {
+        return _isPlayLocked(tokenId);
+    }
+
+    function setAdminCut(uint adminCut) external whenAdmin {
+        _adminCut = adminCut * 1 gwei;
+    }
+
+    function play(uint tokenId, uint playCost, address distributor, string calldata nonce) external payable whenOwner(tokenId) whenNotPlayLocked(tokenId) {
+        require(playCost >= _adminCut, "PlayCost is too low");
+        require(msg.value >= playCost, "Insufficient payment");
+        _adminBalance += _adminCut;
+        _balance[distributor] += playCost - _adminCut;
+        if (msg.value > playCost) _balance[msg.sender] += msg.value - playCost;
+        uint lockedUntil = block.timestamp + _metadata[tokenId].duration;
+        _playLock[tokenId] = PlayLock({
+            distributor: distributor,
+            lockedUntil: lockedUntil,
+            playCost: playCost,
+            nonce: nonce
+        });
+        emit Play(msg.sender, tokenId, distributor, lockedUntil, playCost, nonce);
     }
 
     function mint(address to, Metadata calldata metadata) external returns (uint tokenId) {
@@ -72,4 +124,5 @@ contract RWAlbumsNFT is ERC721("RWAlbums", "RWAS") {
         _safeMint(to, tokenId);
         emit Mint(to, tokenId, metadata);
     }
+
 }
