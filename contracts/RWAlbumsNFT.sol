@@ -168,4 +168,19 @@ contract RWAlbumsNFT is ERC721("RWAlbums", "RWAS") {
         emit Mint(to, tokenId, metadata);
     }
 
+    function withdraw() external {
+        uint balance = _balance[msg.sender];
+        require(balance > 0, "Nothing to withdraw");
+        _balance[msg.sender] = 0;
+        (bool success,) = payable(msg.sender).call{value: balance}("");
+        require(success, "Withdraw failed");
+    }
+
+    function withdrawFromAdminBalance(uint amount) external whenAdmin() {
+        require(_adminBalance > amount, "Insufficient admin balance");
+        _adminBalance -= amount;
+        (bool success,) = payable(msg.sender).call{value: amount}("");
+        require(success, "Withdraw failed");
+    }
+
 }
